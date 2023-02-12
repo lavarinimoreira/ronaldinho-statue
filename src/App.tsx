@@ -6,7 +6,7 @@ import Parallelepiped from "./components/Parallelepiped";
 function App() {
   return (
     <div className="App">
-      <div>
+      <div className="left">
         <SphereForm />
         <Cylinder />
         <Parallelepiped />
