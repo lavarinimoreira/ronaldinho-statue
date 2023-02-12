@@ -1,16 +1,22 @@
 import React from "react";
-import { ImSphere } from "react-icons/im";
+import { BsBox } from "react-icons/bs";
 import "./Form.css";
 
-const SphereForm = () => {
+const Parallelepiped = () => {
   return (
     <form className="form">
-      <h3>Sphere</h3>
+      <h3>Parallelepiped</h3>
       <h2>
-        <ImSphere />
+        <BsBox />
       </h2>
 
-      <label>Radius (cm): </label>
+      <label>Width (cm): </label>
+      <input type="number" />
+
+      <label>Heigth (cm): </label>
+      <input type="number" />
+
+      <label>Depth (cm): </label>
       <input type="number" />
 
       <select name="material">
@@ -36,4 +42,4 @@ const SphereForm = () => {
   );
 };
 
-export default SphereForm;
+export default Parallelepiped;

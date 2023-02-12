@@ -1,0 +1,49 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 0 0 16px 0;
+    border-radius: 8px;
+    margin: 8px;
+}
+
+.form label {
+    color: #ffb627;
+}
+
+.form input {
+    width: 20%;
+    margin: 0 0 8px 0;
+    background-color: #2f4858;
+    border: none;
+    margin: 4px 0 4px 0;
+}
+
+.form select,
+.form button {
+    margin: 8px 0 8px 0;
+    background-color: #2f4858;
+    border: none;
+}
+
+.form div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form h2 {
+    margin: 0 0 32px 0;
+    color: white;
+}
+
+.form h3 {
+    margin: 16px 0 0 0;
+    color: #f26419;
+}
+
+.form div button {
+    margin: 0 0 0 8px;
+    cursor: pointer;
+}

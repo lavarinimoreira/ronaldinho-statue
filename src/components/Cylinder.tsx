@@ -1,16 +1,19 @@
 import React from "react";
-import { ImSphere } from "react-icons/im";
+import { BiCylinder } from "react-icons/bi";
 import "./Form.css";
 
-const SphereForm = () => {
+const Triangle = () => {
   return (
     <form className="form">
-      <h3>Sphere</h3>
+      <h3>Cylinder</h3>
       <h2>
-        <ImSphere />
+        <BiCylinder />
       </h2>
-
       <label>Radius (cm): </label>
+
+      <input type="number" />
+
+      <label>Heigth (cm): </label>
       <input type="number" />
 
       <select name="material">
@@ -28,7 +31,7 @@ const SphereForm = () => {
         </option>
       </select>
       <div>
-        <label>Units: </label>
+        <label>Units:</label>
         <input type="number" />
         <button>Add</button>
       </div>
@@ -36,4 +39,4 @@ const SphereForm = () => {
   );
 };
 
-export default SphereForm;
+export default Triangle;
