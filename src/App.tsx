@@ -92,18 +92,21 @@ function App() {
                             />
                         ))}
                     </div>
+                    {/* <div className="line"></div> */}
                     <div>
                         <h3>Cylinder</h3>
                         <h2>
                             <BiCylinder />
                         </h2>
                     </div>
+                    {/* <div className="line"></div> */}
                     <div>
                         <h3>Parallelepiped</h3>
                         <h2>
                             <BsBox />
                         </h2>
                     </div>
+                    {/* <div className="line"></div> */}
                     <div>
                         <h3>Total</h3>
                         <h2>
