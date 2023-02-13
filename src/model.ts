@@ -2,6 +2,9 @@ export interface TSphere {
     radius: string,
     material: string,
     units: string,
+    weight: number,
+    total: number,
+    id: string
 }
 
 export interface TCylinder {
@@ -9,6 +12,9 @@ export interface TCylinder {
     heigth: string,
     material: string,
     units: string,
+    weight: number,
+    total: number,
+    id: string
 }
 
 export interface TParallelepiped {
@@ -17,4 +23,7 @@ export interface TParallelepiped {
     depth: string,
     material: string,
     units: string,
+    weight: number,
+    total: number,
+    id: string
 }

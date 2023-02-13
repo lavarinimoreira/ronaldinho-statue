@@ -8,7 +8,6 @@ html,
 body {
   height: 100%;
   font-family: Ubuntu;
-  overflow: hidden;
 }
 
 #root {
@@ -29,7 +28,9 @@ h1 {
 
 .right {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
 }
 
