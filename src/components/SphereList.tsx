@@ -1,6 +1,7 @@
 import React from 'react';
 import { TSphere } from '../model';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { FaTrashAlt } from 'react-icons/fa';
+import './List.css';
 
 interface Props extends TSphere {
     handleDeleteSphere: (id: string) => void;
@@ -15,17 +16,19 @@ const SphereList: React.FC<Props> = ({
     handleDeleteSphere,
 }) => {
     return (
-        <ul>
-            <li>{`Units: ${units}`}</li>
-            <li>{`Material: ${material}`}</li>
-            <li>{`Weight: ${(Math.round(weight * 100) / 100).toFixed(
-                2
-            )}kg.`}</li>
-            <li>{`Total: $ ${(Math.round(total * 100) / 100).toFixed(2)}`}</li>
-            <span onClick={() => handleDeleteSphere(id)}>
-                <AiOutlineDelete />
+        <div className="list">
+            <ul>
+                <li className="units">{`Units: ${units}`}</li>
+                <li>{`${material}`}</li>
+                <li>{`${(Math.round(weight * 100) / 100).toFixed(2)}kg.`}</li>
+                <li className="dolar">{`$ ${(
+                    Math.round(total * 100) / 100
+                ).toFixed(2)}`}</li>
+            </ul>
+            <span onClick={() => handleDeleteSphere(id)} title="Remove">
+                <FaTrashAlt />
             </span>
-        </ul>
+        </div>
     );
 };
 

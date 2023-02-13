@@ -5,7 +5,11 @@ import ParallelepipedForm from './components/ParallelepipedForm';
 import { TSphere } from './model';
 import { sphereWeight, sphereTotal } from './components/common/utils/functions';
 import SphereList from './components/SphereList';
-import uuid from 'react-uuid';
+import { v4 as uuidv4 } from 'uuid';
+import { BiCylinder } from 'react-icons/bi';
+import { ImSphere } from 'react-icons/im';
+import { BsBox } from 'react-icons/bs';
+import { FaSortAmountUpAlt } from 'react-icons/fa';
 
 function App() {
     /** Sphere Settings------------------------------------------ */
@@ -31,7 +35,7 @@ function App() {
         );
 
         sphere.total = sphereTotal(sphere.material, sphere.weight);
-        sphere.id = uuid();
+        sphere.id = uuidv4();
 
         console.log(sphere);
 
@@ -67,18 +71,46 @@ function App() {
             </div>
             <div className="right">
                 <h1>Ronaldinho Statue</h1>
-                {spheres.map((item) => (
-                    <SphereList
-                        key={item.weight}
-                        units={item.units}
-                        material={item.material}
-                        weight={item.weight}
-                        total={item.total}
-                        radius={''}
-                        id={item.id}
-                        handleDeleteSphere={handleDeleteSphere}
-                    />
-                ))}
+                <h2 className="sc">Shopping Cart</h2>
+                <span>0 items in cart</span>
+                <div className="shopping-cart">
+                    <div>
+                        <h3>Sphere</h3>
+                        <h2>
+                            <ImSphere />
+                        </h2>
+                        {spheres.map((item) => (
+                            <SphereList
+                                key={item.id}
+                                units={item.units}
+                                material={item.material}
+                                weight={item.weight}
+                                total={item.total}
+                                radius={''}
+                                id={item.id}
+                                handleDeleteSphere={handleDeleteSphere}
+                            />
+                        ))}
+                    </div>
+                    <div>
+                        <h3>Cylinder</h3>
+                        <h2>
+                            <BiCylinder />
+                        </h2>
+                    </div>
+                    <div>
+                        <h3>Parallelepiped</h3>
+                        <h2>
+                            <BsBox />
+                        </h2>
+                    </div>
+                    <div>
+                        <h3>Total</h3>
+                        <h2>
+                            <FaSortAmountUpAlt />
+                        </h2>
+                    </div>
+                </div>
             </div>
         </div>
     );

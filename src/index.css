@@ -39,3 +39,39 @@ h1 {
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.shopping-cart {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  background-color: #111d13;
+  border-radius: 8px;
+  justify-content: space-around;
+  text-align: center;
+  box-shadow: 0px 10px 25px 5px rgba(0, 0, 0, 0.5);
+}
+
+.shopping-cart h2 {
+  margin: 0 0 32px 0;
+  color: white;
+}
+
+.shopping-cart h3 {
+  margin: 16px 0 0 0;
+  color: #4f772d;
+}
+
+.right span,
+.right h2 {
+  align-self: flex-start;
+  margin: 0 0 0 5%;
+  color: white;
+}
+
+.App div .sc {
+  /* color: #415d43; */
+  /* color: #ffb627; */
+  color: #4f772d;
+  margin: 0 0 24px 5%;
+  font-size: 32px;
+}

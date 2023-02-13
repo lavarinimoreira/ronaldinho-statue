@@ -1,0 +1,28 @@
+.list {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0 0 8px 0;
+}
+
+.list ul {
+    color: #d2d4c8;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style-type: none;
+    padding: 8px 80px 0px 80px;
+}
+
+.list span {
+    /* color: #941b0c; */
+    color: #540b0e;
+    align-self: flex-end;
+    margin: 0 12px 8px 0;
+}
+
+.units {
+    margin: 0 0 8px 0;
+}
