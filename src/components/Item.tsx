@@ -1,19 +1,23 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import { TCylinder } from '../model';
 import './List.css';
 
-interface Props extends TCylinder {
-    handleDeleteCylinder: (id: string) => void;
+interface Props {
+    material: string;
+    units: string;
+    weight: number;
+    total: number;
+    id: string;
+    handleDelete: (id: string) => void;
 }
 
-const CylinderList: React.FC<Props> = ({
+const Item: React.FC<Props> = ({
     material,
     units,
     weight,
     total,
     id,
-    handleDeleteCylinder,
+    handleDelete,
 }) => {
     return (
         <div className="list">
@@ -25,11 +29,11 @@ const CylinderList: React.FC<Props> = ({
                     Math.round(total * 100) / 100
                 ).toFixed(2)}`}</li>
             </ul>
-            <span onClick={() => handleDeleteCylinder(id)} title="Remove">
+            <span onClick={() => handleDelete(id)} title="Remove">
                 <FaTrashAlt />
             </span>
         </div>
     );
 };
 
-export default CylinderList;
+export default Item;

@@ -8,13 +8,12 @@ import {
     sphereWeight,
     cylinderWeight,
 } from './components/common/utils/functions';
-import SphereList from './components/SphereList';
 import { v4 as uuidv4 } from 'uuid';
 import { BiCylinder } from 'react-icons/bi';
 import { ImSphere } from 'react-icons/im';
 import { BsBox } from 'react-icons/bs';
 import { FaSortAmountUpAlt } from 'react-icons/fa';
-import CylinderList from './components/CylinderList';
+import Item from './components/Item';
 
 function App() {
     /** Sphere Settings------------------------------------------ */
@@ -135,15 +134,14 @@ function App() {
                             <ImSphere />
                         </h2>
                         {spheres.map((item) => (
-                            <SphereList
+                            <Item
                                 key={item.id}
                                 units={item.units}
                                 material={item.material}
                                 weight={item.weight}
                                 total={item.total}
-                                radius={''}
                                 id={item.id}
-                                handleDeleteSphere={handleDeleteSphere}
+                                handleDelete={handleDeleteSphere}
                             />
                         ))}
                     </div>
@@ -154,16 +152,14 @@ function App() {
                             <BiCylinder />
                         </h2>
                         {cylinders.map((item) => (
-                            <CylinderList
+                            <Item
                                 key={item.id}
                                 units={item.units}
                                 material={item.material}
                                 weight={item.weight}
                                 total={item.total}
-                                height={item.height}
-                                radius={''}
                                 id={item.id}
-                                handleDeleteCylinder={handleDeleteCylinder}
+                                handleDelete={handleDeleteCylinder}
                             />
                         ))}
                     </div>
