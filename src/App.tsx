@@ -16,10 +16,13 @@ import { BsBox } from 'react-icons/bs';
 import { FaSortAmountUpAlt } from 'react-icons/fa';
 import Item from './components/Item';
 import { BsCart4 } from 'react-icons/bs';
+import ConfettiExplosion from 'react-confetti-explosion';
+import { GiReturnArrow } from 'react-icons/gi';
 
 function App() {
     const [total, setTotal] = useState<number>(0);
     const [cartItems, setCartItems] = useState<number>(0);
+    const [totalWeight, setTotalWeight] = useState<number>(0);
 
     /** Sphere Settings---------------------------------------------------------- */
     const [sphere, setSphere] = useState<TSphere>({
@@ -191,8 +194,57 @@ function App() {
         setTotal(totalSpheres + totalCylinders + totalParallelepipeds);
     }, [spheres, cylinders, parallelepipeds]);
 
+    const [isExploding, setIsExploding] = React.useState(false);
+
+    const handleCartSubmit = () => {
+        setIsExploding(true);
+        const totalWeightSpheres = spheres.reduce((result, currentSphere) => {
+            return result + currentSphere.weight;
+        }, 0);
+        const totalWeightCylinders = cylinders.reduce(
+            (result, currentCylinder) => {
+                return result + currentCylinder.weight;
+            },
+            0
+        );
+        const totalWeightParallelepipeds = parallelepipeds.reduce(
+            (result, currentParallelepiped) => {
+                return result + currentParallelepiped.weight;
+            },
+            0
+        );
+
+        setTotalWeight(
+            totalWeightSpheres +
+                totalWeightCylinders +
+                totalWeightParallelepipeds
+        );
+    };
+
+    const handleReturn = () => {
+        setTotalWeight(0);
+        setIsExploding(false);
+    };
+
     return (
         <div className="App">
+            {isExploding && totalWeight > 0 && (
+                <div className="all">
+                    <div className="confetti">
+                        <h2>Congrats!</h2>
+                        <p>
+                            You build a{' '}
+                            {(Math.round(totalWeight * 100) / 100).toFixed(2)}kg
+                            statue!
+                        </p>
+                        <ConfettiExplosion duration={5000} />
+                        <button title="Return" onClick={() => handleReturn()}>
+                            <GiReturnArrow />
+                        </button>
+                    </div>
+                </div>
+            )}
+            ;
             <div className="left">
                 <SphereForm
                     handleSphere={handleSphere}
@@ -212,6 +264,7 @@ function App() {
             </div>
             <div className="right">
                 <h1>Ronaldinho Statue</h1>
+
                 <h2 className="sc">Shopping Cart</h2>
                 <span>
                     {cartItems} item{cartItems === 1 ? '' : 's'} in cart
@@ -279,7 +332,11 @@ function App() {
                         <div className="total">
                             ${(Math.round(total * 100) / 100).toFixed(2)}
                         </div>
-                        <button className="btn-cart" title="Orderer">
+                        <button
+                            onClick={() => handleCartSubmit()}
+                            className="btn-cart"
+                            title="Orderer"
+                        >
                             <BsCart4 />
                         </button>
                     </div>
