@@ -15,9 +15,11 @@ import { ImSphere } from 'react-icons/im';
 import { BsBox } from 'react-icons/bs';
 import { FaSortAmountUpAlt } from 'react-icons/fa';
 import Item from './components/Item';
+import { BsCart4 } from 'react-icons/bs';
 
 function App() {
-    const [total, setTotal] = useState(0);
+    const [total, setTotal] = useState<number>(0);
+    const [cartItems, setCartItems] = useState<number>(0);
 
     /** Sphere Settings---------------------------------------------------------- */
     const [sphere, setSphere] = useState<TSphere>({
@@ -181,6 +183,11 @@ function App() {
             },
             0
         );
+
+        setCartItems(
+            spheres.length + cylinders.length + parallelepipeds.length
+        );
+
         setTotal(totalSpheres + totalCylinders + totalParallelepipeds);
     }, [spheres, cylinders, parallelepipeds]);
 
@@ -206,7 +213,9 @@ function App() {
             <div className="right">
                 <h1>Ronaldinho Statue</h1>
                 <h2 className="sc">Shopping Cart</h2>
-                <span>0 items in cart</span>
+                <span>
+                    {cartItems} item{cartItems === 1 ? '' : 's'} in cart
+                </span>
                 <div className="shopping-cart">
                     <div className="objects-cart">
                         <h3>Sphere</h3>
@@ -270,8 +279,17 @@ function App() {
                         <div className="total">
                             ${(Math.round(total * 100) / 100).toFixed(2)}
                         </div>
+                        <button className="btn-cart" title="Orderer">
+                            <BsCart4 />
+                        </button>
                     </div>
                 </div>
+                {!cartItems ? (
+                    <div className="message-empty-cart">
+                        Your cart is empty. Keep shopping to build the
+                        Ronaldinho Statue!
+                    </div>
+                ) : null}
             </div>
         </div>
     );

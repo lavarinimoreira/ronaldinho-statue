@@ -69,7 +69,7 @@ h1 {
 }
 
 .right span,
-.right h2 {
+.right .sc {
   align-self: flex-start;
   margin: 0 0 0 5%;
   color: white;
@@ -112,4 +112,20 @@ div .shopping-cart .object-total {
 
 .object-total h2 {
   color: #a3b18a;
+}
+
+.message-empty-cart {
+  /* margin: 80px; */
+  color: #a3b18a;
+  font-size: 0.9em;
+  align-self: flex-start;
+  margin: 0 0 0 5%;
+}
+
+.btn-cart {
+  border-radius: 4px;
+  border: none;
+  font-size: 1em;
+  margin: 8px 0 0 0;
+  cursor: pointer;
 }
