@@ -48,3 +48,9 @@
     margin: 0 0 0 8px;
     cursor: pointer;
 }
+
+@media (max-width: 850px) {
+    .form {
+        margin: 8px 48px 0 48px;
+    }
+}
