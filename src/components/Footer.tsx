@@ -6,7 +6,11 @@ const Footer = () => {
         <div className="footer">
             <p>
                 Builded by{' '}
-                <a target="_blank" href="https://lavarinimoreira.me">
+                <a
+                    target="_blank"
+                    href="https://lavarinimoreira.me"
+                    rel="noreferrer"
+                >
                     Gabriel Lavarini
                 </a>
             </p>
