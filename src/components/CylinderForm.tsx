@@ -22,6 +22,8 @@ const Cylinder: React.FC<Props> = ({
             </h2>
             <label htmlFor="radius-cylinder">Radius (cm): </label>
             <input
+                max="10"
+                min="1"
                 name="radius-cylinder"
                 id="radius-cylinder"
                 type="number"
@@ -34,6 +36,8 @@ const Cylinder: React.FC<Props> = ({
 
             <label htmlFor="height-cylinder">Height (cm): </label>
             <input
+                max="100"
+                min="1"
                 name="height-cylinder"
                 id="height-cylinder"
                 type="number"
@@ -68,6 +72,8 @@ const Cylinder: React.FC<Props> = ({
             <div>
                 <label htmlFor="units-cylinder">Units:</label>
                 <input
+                    max="10"
+                    min="1"
                     name="units-cylinder"
                     id="units-cylinder"
                     type="number"

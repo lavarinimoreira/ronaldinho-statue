@@ -16,6 +16,12 @@ body {
   display: flex;
 }
 
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .App {
   display: flex;
   width: 100%;
@@ -220,6 +226,7 @@ div .shopping-cart .object-total {
 
   .message-empty-cart {
     margin-bottom: 8px;
+    align-self: center;
   }
 
   .App div .sc {

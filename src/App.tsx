@@ -18,6 +18,7 @@ import Item from './components/Item';
 import { BsCart4 } from 'react-icons/bs';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { GiReturnArrow } from 'react-icons/gi';
+import Footer from './components/Footer';
 
 function App() {
     const [total, setTotal] = useState<number>(0);
@@ -227,128 +228,136 @@ function App() {
     };
 
     return (
-        <div className="App">
-            {isExploding && totalWeight > 0 && (
-                <div className="all">
-                    <div className="confetti">
-                        <h2>Congrats!</h2>
-                        <p>
-                            You build a{' '}
-                            {(Math.round(totalWeight * 100) / 100).toFixed(2)}kg
-                            statue!
-                        </p>
-                        <ConfettiExplosion duration={5000} />
-                        <button title="Return" onClick={() => handleReturn()}>
-                            <GiReturnArrow />
-                        </button>
-                    </div>
-                </div>
-            )}
-            ;
-            <div className="left">
-                <SphereForm
-                    handleSphere={handleSphere}
-                    sphere={sphere}
-                    setSphere={setSphere}
-                />
-                <CylinderForm
-                    handleCylinder={handleCylinder}
-                    cylinder={cylinder}
-                    setCylinder={setCylinder}
-                />
-                <ParallelepipedForm
-                    handleParallelepiped={handleParallelepiped}
-                    parallelepiped={parallelepiped}
-                    setParallelepiped={setParallelepiped}
-                />
-            </div>
-            <div className="right">
-                <h1>Ronaldinho Statue</h1>
-
-                <h2 className="sc">Shopping Cart</h2>
-                <span>
-                    {cartItems} item{cartItems === 1 ? '' : 's'} in cart
-                </span>
-                <div className="shopping-cart">
-                    <div className="objects-cart">
-                        <h3>Sphere</h3>
-                        <h2>
-                            <ImSphere />
-                        </h2>
-                        {spheres.map((item) => (
-                            <Item
-                                key={item.id}
-                                units={item.units}
-                                material={item.material}
-                                weight={item.weight}
-                                total={item.total}
-                                id={item.id}
-                                handleDelete={handleDeleteSphere}
-                            />
-                        ))}
-                    </div>
-                    {/* <div className="line"></div> */}
-                    <div className="objects-cart">
-                        <h3>Cylinder</h3>
-                        <h2>
-                            <BiCylinder />
-                        </h2>
-                        {cylinders.map((item) => (
-                            <Item
-                                key={item.id}
-                                units={item.units}
-                                material={item.material}
-                                weight={item.weight}
-                                total={item.total}
-                                id={item.id}
-                                handleDelete={handleDeleteCylinder}
-                            />
-                        ))}
-                    </div>
-                    {/* <div className="line"></div> */}
-                    <div className="objects-cart">
-                        <h3>Parallelepiped</h3>
-                        <h2>
-                            <BsBox />
-                        </h2>
-                        {parallelepipeds.map((item) => (
-                            <Item
-                                key={item.id}
-                                units={item.units}
-                                material={item.material}
-                                weight={item.weight}
-                                total={item.total}
-                                id={item.id}
-                                handleDelete={handleDeleteParallelepiped}
-                            />
-                        ))}
-                    </div>
-                    {/* <div className="line"></div> */}
-                    <div className="object-total">
-                        <h3>Total</h3>
-                        <h2>
-                            <FaSortAmountUpAlt />
-                        </h2>
-                        <div className="total">
-                            ${(Math.round(total * 100) / 100).toFixed(2)}
+        <main>
+            <div className="App">
+                {isExploding && totalWeight > 0 && (
+                    <div className="all">
+                        <div className="confetti">
+                            <h2>Congrats!</h2>
+                            <p>
+                                You build a{' '}
+                                {(Math.round(totalWeight * 100) / 100).toFixed(
+                                    2
+                                )}
+                                kg statue!
+                            </p>
+                            <ConfettiExplosion duration={5000} />
+                            <button
+                                title="Return"
+                                onClick={() => handleReturn()}
+                            >
+                                <GiReturnArrow />
+                            </button>
                         </div>
-                        <button
-                            onClick={() => handleCartSubmit()}
-                            className="btn-cart"
-                            title="Orderer"
-                        >
-                            <BsCart4 />
-                        </button>
                     </div>
+                )}
+                ;
+                <div className="left">
+                    <SphereForm
+                        handleSphere={handleSphere}
+                        sphere={sphere}
+                        setSphere={setSphere}
+                    />
+                    <CylinderForm
+                        handleCylinder={handleCylinder}
+                        cylinder={cylinder}
+                        setCylinder={setCylinder}
+                    />
+                    <ParallelepipedForm
+                        handleParallelepiped={handleParallelepiped}
+                        parallelepiped={parallelepiped}
+                        setParallelepiped={setParallelepiped}
+                    />
                 </div>
-                {!cartItems ? (
-                    <div className="message-empty-cart">
-                        Your cart is empty. Keep shopping to build the
-                        Ronaldinho Statue!
+                <div className="right">
+                    <h1>Ronaldinho Statue</h1>
+
+                    <h2 className="sc">Shopping Cart</h2>
+                    <span>
+                        {cartItems} item{cartItems === 1 ? '' : 's'} in cart
+                    </span>
+                    <div className="shopping-cart">
+                        <div className="objects-cart">
+                            <h3>Sphere</h3>
+                            <h2>
+                                <ImSphere />
+                            </h2>
+                            {spheres.map((item) => (
+                                <Item
+                                    key={item.id}
+                                    units={item.units}
+                                    material={item.material}
+                                    weight={item.weight}
+                                    total={item.total}
+                                    id={item.id}
+                                    handleDelete={handleDeleteSphere}
+                                />
+                            ))}
+                        </div>
+                        {/* <div className="line"></div> */}
+                        <div className="objects-cart">
+                            <h3>Cylinder</h3>
+                            <h2>
+                                <BiCylinder />
+                            </h2>
+                            {cylinders.map((item) => (
+                                <Item
+                                    key={item.id}
+                                    units={item.units}
+                                    material={item.material}
+                                    weight={item.weight}
+                                    total={item.total}
+                                    id={item.id}
+                                    handleDelete={handleDeleteCylinder}
+                                />
+                            ))}
+                        </div>
+                        {/* <div className="line"></div> */}
+                        <div className="objects-cart">
+                            <h3>Parallelepiped</h3>
+                            <h2>
+                                <BsBox />
+                            </h2>
+                            {parallelepipeds.map((item) => (
+                                <Item
+                                    key={item.id}
+                                    units={item.units}
+                                    material={item.material}
+                                    weight={item.weight}
+                                    total={item.total}
+                                    id={item.id}
+                                    handleDelete={handleDeleteParallelepiped}
+                                />
+                            ))}
+                        </div>
+                        {/* <div className="line"></div> */}
+                        <div className="object-total">
+                            <h3>Total</h3>
+                            <h2>
+                                <FaSortAmountUpAlt />
+                            </h2>
+                            <div className="total">
+                                ${(Math.round(total * 100) / 100).toFixed(2)}
+                            </div>
+                            <button
+                                onClick={() => handleCartSubmit()}
+                                className="btn-cart"
+                                title="Orderer"
+                            >
+                                <BsCart4 />
+                            </button>
+                        </div>
                     </div>
-                ) : null}
+                    {!cartItems ? (
+                        <div className="message-empty-cart">
+                            Your cart is empty. Keep shopping to build the
+                            Ronaldinho Statue!
+                        </div>
+                    ) : null}
+                </div>
             </div>
-        </div>
+            <Footer />
+        </main>
     );
 }
 

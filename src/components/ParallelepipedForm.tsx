@@ -23,6 +23,8 @@ const Parallelepiped: React.FC<Props> = ({
 
             <label htmlFor="width-p">Width (cm): </label>
             <input
+                max="100"
+                min="1"
                 id="width-p"
                 name="width-p"
                 type="number"
@@ -38,6 +40,8 @@ const Parallelepiped: React.FC<Props> = ({
 
             <label htmlFor="height-p">Height (cm): </label>
             <input
+                max="100"
+                min="1"
                 id="height-p"
                 name="height-p"
                 type="number"
@@ -53,6 +57,8 @@ const Parallelepiped: React.FC<Props> = ({
 
             <label htmlFor="depth-p">Depth (cm): </label>
             <input
+                max="100"
+                min="1"
                 id="depth-p"
                 name="depth-p"
                 type="number"
@@ -93,6 +99,7 @@ const Parallelepiped: React.FC<Props> = ({
             <div>
                 <label htmlFor="units-p">Units: </label>
                 <input
+                    max="10"
                     id="units-p"
                     name="units-p"
                     type="number"

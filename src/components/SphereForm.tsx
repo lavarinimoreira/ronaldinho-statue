@@ -19,7 +19,8 @@ const SphereForm: React.FC<Props> = ({ sphere, setSphere, handleSphere }) => {
 
             <label htmlFor="radius-sphere">Radius (cm): </label>
             <input
-                max="100"
+                max="50"
+                min="1"
                 name="radius-sphere"
                 id="radius-sphere"
                 type="number"
@@ -54,6 +55,8 @@ const SphereForm: React.FC<Props> = ({ sphere, setSphere, handleSphere }) => {
             <div>
                 <label htmlFor="units-sphere">Units: </label>
                 <input
+                    max="10"
+                    min="1"
                     id="units-sphere"
                     name="units-sphere"
                     type="number"

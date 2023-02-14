@@ -1,0 +1,29 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    color: white;
+    margin-top: auto;
+    position: relative;
+    font-size: 0.8em;
+}
+
+.footer p a {
+    display: inline-block;
+    text-decoration: none;
+    color: #a3b18a;
+    transition: 0.3s;
+    margin: 0 16px 0 0;
+}
+
+.footer p a:hover {
+    color: #d9ed92;
+}
+
+@media (max-width: 850px) {
+    .footer {
+        align-self: center;
+        margin: 0;
+    }
+}
