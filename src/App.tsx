@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SphereForm from './components/SphereForm';
 import CylinderForm from './components/CylinderForm';
 import ParallelepipedForm from './components/ParallelepipedForm';
@@ -17,7 +17,9 @@ import { FaSortAmountUpAlt } from 'react-icons/fa';
 import Item from './components/Item';
 
 function App() {
-    /** Sphere Settings------------------------------------------ */
+    const [total, setTotal] = useState(0);
+
+    /** Sphere Settings---------------------------------------------------------- */
     const [sphere, setSphere] = useState<TSphere>({
         radius: '',
         material: '',
@@ -57,7 +59,7 @@ function App() {
         setSpheres(spheres.filter((sphere) => sphere.id !== id));
     };
 
-    /** Cylinder Settings--------------------------------------- */
+    /** Cylinder Settings--------------------------------------------------------- */
     const [cylinder, setCylinder] = useState<TCylinder>({
         radius: '',
         height: '',
@@ -89,8 +91,6 @@ function App() {
         cylinder.total = totalValue(cylinder.material, cylinder.weight);
         cylinder.id = uuidv4();
 
-        console.log(cylinder);
-
         setCylinders([...cylinders, cylinder]);
         setCylinder({
             radius: '',
@@ -107,7 +107,7 @@ function App() {
         setCylinders(cylinders.filter((cylinder) => cylinder.id !== id));
     };
 
-    /** Parallelepiped Settings--------------------------------- */
+    /** Parallelepiped Settings------------------------------------------------- */
     const [parallelepiped, setParallelepiped] = useState<TParallelepiped>({
         height: '',
         width: '',
@@ -147,8 +147,6 @@ function App() {
         );
         parallelepiped.id = uuidv4();
 
-        console.log(parallelepiped);
-
         setParallelepipeds([...parallelepipeds, parallelepiped]);
         setParallelepiped({
             height: '',
@@ -167,6 +165,24 @@ function App() {
             parallelepipeds.filter((parallelepiped) => parallelepiped.id !== id)
         );
     };
+
+    /** UseEffect ----------------------------------------------------------- */
+
+    useEffect(() => {
+        const totalSpheres = spheres.reduce((result, currentSphere) => {
+            return result + currentSphere.total;
+        }, 0);
+        const totalCylinders = cylinders.reduce((result, currentCylinder) => {
+            return result + currentCylinder.total;
+        }, 0);
+        const totalParallelepipeds = parallelepipeds.reduce(
+            (result, currentParallelepipeds) => {
+                return result + currentParallelepipeds.total;
+            },
+            0
+        );
+        setTotal(totalSpheres + totalCylinders + totalParallelepipeds);
+    }, [spheres, cylinders, parallelepipeds]);
 
     return (
         <div className="App">
@@ -192,7 +208,7 @@ function App() {
                 <h2 className="sc">Shopping Cart</h2>
                 <span>0 items in cart</span>
                 <div className="shopping-cart">
-                    <div>
+                    <div className="objects-cart">
                         <h3>Sphere</h3>
                         <h2>
                             <ImSphere />
@@ -210,7 +226,7 @@ function App() {
                         ))}
                     </div>
                     {/* <div className="line"></div> */}
-                    <div>
+                    <div className="objects-cart">
                         <h3>Cylinder</h3>
                         <h2>
                             <BiCylinder />
@@ -228,7 +244,7 @@ function App() {
                         ))}
                     </div>
                     {/* <div className="line"></div> */}
-                    <div>
+                    <div className="objects-cart">
                         <h3>Parallelepiped</h3>
                         <h2>
                             <BsBox />
@@ -246,11 +262,14 @@ function App() {
                         ))}
                     </div>
                     {/* <div className="line"></div> */}
-                    <div>
+                    <div className="object-total">
                         <h3>Total</h3>
                         <h2>
                             <FaSortAmountUpAlt />
                         </h2>
+                        <div className="total">
+                            ${(Math.round(total * 100) / 100).toFixed(2)}
+                        </div>
                     </div>
                 </div>
             </div>
