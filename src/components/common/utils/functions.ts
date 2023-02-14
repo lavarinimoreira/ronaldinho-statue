@@ -48,3 +48,26 @@ export const cylinderWeight = (
 
     return (density * volume * units)/1000;
 };
+
+/** Parallelepiped functions--------------------------------------------------- */
+export const parallelepipedWeight = (
+    unitsStr: string,
+    heightStr: string,
+    materialStr: string,
+    widthStr: string,
+    depthStr: string
+) => {
+    const units: number = parseFloat(unitsStr);
+    const heigth: number = parseFloat(heightStr);
+    const width: number = parseFloat(widthStr);
+    const depth: number = parseFloat(depthStr);
+
+    const volume = heigth * width * depth;
+
+    let density: number = 0;
+    if(materialStr === 'aluminium') density = 2.7
+    if(materialStr === 'copper') density = 9
+    if(materialStr === 'steel') density = 7.8
+
+    return (density * volume * units)/1000;
+};

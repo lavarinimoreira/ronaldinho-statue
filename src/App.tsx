@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import SphereForm from './components/SphereForm';
 import CylinderForm from './components/CylinderForm';
 import ParallelepipedForm from './components/ParallelepipedForm';
-import { TCylinder, TSphere } from './model';
+import { TCylinder, TParallelepiped, TSphere } from './model';
 import {
     totalValue,
     sphereWeight,
     cylinderWeight,
+    parallelepipedWeight,
 } from './components/common/utils/functions';
 import { v4 as uuidv4 } from 'uuid';
 import { BiCylinder } from 'react-icons/bi';
@@ -107,6 +108,65 @@ function App() {
     };
 
     /** Parallelepiped Settings--------------------------------- */
+    const [parallelepiped, setParallelepiped] = useState<TParallelepiped>({
+        height: '',
+        width: '',
+        depth: '',
+        material: '',
+        units: '',
+        weight: 0,
+        total: 0,
+        id: '',
+    });
+    const [parallelepipeds, setParallelepipeds] = useState<TParallelepiped[]>(
+        []
+    );
+
+    const handleParallelepiped = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (
+            parseInt(parallelepiped.width) <= 0 ||
+            parseInt(parallelepiped.units) <= 0 ||
+            parseInt(parallelepiped.height) <= 0 ||
+            parseInt(parallelepiped.depth) <= 0
+        )
+            return;
+
+        parallelepiped.weight = parallelepipedWeight(
+            parallelepiped.units,
+            parallelepiped.height,
+            parallelepiped.material,
+            parallelepiped.width,
+            parallelepiped.depth
+        );
+
+        parallelepiped.total = totalValue(
+            parallelepiped.material,
+            parallelepiped.weight
+        );
+        parallelepiped.id = uuidv4();
+
+        console.log(parallelepiped);
+
+        setParallelepipeds([...parallelepipeds, parallelepiped]);
+        setParallelepiped({
+            height: '',
+            width: '',
+            depth: '',
+            material: '',
+            units: '',
+            weight: 0,
+            total: 0,
+            id: '',
+        });
+    };
+
+    const handleDeleteParallelepiped = (id: string) => {
+        setParallelepipeds(
+            parallelepipeds.filter((parallelepiped) => parallelepiped.id !== id)
+        );
+    };
 
     return (
         <div className="App">
@@ -121,7 +181,11 @@ function App() {
                     cylinder={cylinder}
                     setCylinder={setCylinder}
                 />
-                <ParallelepipedForm />
+                <ParallelepipedForm
+                    handleParallelepiped={handleParallelepiped}
+                    parallelepiped={parallelepiped}
+                    setParallelepiped={setParallelepiped}
+                />
             </div>
             <div className="right">
                 <h1>Ronaldinho Statue</h1>
@@ -169,6 +233,17 @@ function App() {
                         <h2>
                             <BsBox />
                         </h2>
+                        {parallelepipeds.map((item) => (
+                            <Item
+                                key={item.id}
+                                units={item.units}
+                                material={item.material}
+                                weight={item.weight}
+                                total={item.total}
+                                id={item.id}
+                                handleDelete={handleDeleteParallelepiped}
+                            />
+                        ))}
                     </div>
                     {/* <div className="line"></div> */}
                     <div>
