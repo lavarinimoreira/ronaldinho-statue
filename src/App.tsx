@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import SphereForm from './components/SphereForm';
 import CylinderForm from './components/CylinderForm';
 import ParallelepipedForm from './components/ParallelepipedForm';
-import { TSphere } from './model';
-import { sphereWeight, sphereTotal } from './components/common/utils/functions';
+import { TCylinder, TSphere } from './model';
+import {
+    totalValue,
+    sphereWeight,
+    cylinderWeight,
+} from './components/common/utils/functions';
 import SphereList from './components/SphereList';
 import { v4 as uuidv4 } from 'uuid';
 import { BiCylinder } from 'react-icons/bi';
 import { ImSphere } from 'react-icons/im';
 import { BsBox } from 'react-icons/bs';
 import { FaSortAmountUpAlt } from 'react-icons/fa';
+import CylinderList from './components/CylinderList';
 
 function App() {
     /** Sphere Settings------------------------------------------ */
@@ -34,10 +39,8 @@ function App() {
             sphere.material
         );
 
-        sphere.total = sphereTotal(sphere.material, sphere.weight);
+        sphere.total = totalValue(sphere.material, sphere.weight);
         sphere.id = uuidv4();
-
-        console.log(sphere);
 
         setSpheres([...spheres, sphere]);
         setSphere({
@@ -55,6 +58,54 @@ function App() {
     };
 
     /** Cylinder Settings--------------------------------------- */
+    const [cylinder, setCylinder] = useState<TCylinder>({
+        radius: '',
+        height: '',
+        material: '',
+        units: '',
+        weight: 0,
+        total: 0,
+        id: '',
+    });
+    const [cylinders, setCylinders] = useState<TCylinder[]>([]);
+
+    const handleCylinder = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (
+            parseInt(cylinder.radius) <= 0 ||
+            parseInt(cylinder.units) <= 0 ||
+            parseInt(cylinder.height) <= 0
+        )
+            return;
+
+        cylinder.weight = cylinderWeight(
+            cylinder.radius,
+            cylinder.units,
+            cylinder.height,
+            cylinder.material
+        );
+
+        cylinder.total = totalValue(cylinder.material, cylinder.weight);
+        cylinder.id = uuidv4();
+
+        console.log(cylinder);
+
+        setCylinders([...cylinders, cylinder]);
+        setCylinder({
+            radius: '',
+            height: '',
+            material: '',
+            units: '',
+            weight: 0,
+            total: 0,
+            id: '',
+        });
+    };
+
+    const handleDeleteCylinder = (id: string) => {
+        setCylinders(cylinders.filter((cylinder) => cylinder.id !== id));
+    };
 
     /** Parallelepiped Settings--------------------------------- */
 
@@ -66,7 +117,11 @@ function App() {
                     sphere={sphere}
                     setSphere={setSphere}
                 />
-                <CylinderForm />
+                <CylinderForm
+                    handleCylinder={handleCylinder}
+                    cylinder={cylinder}
+                    setCylinder={setCylinder}
+                />
                 <ParallelepipedForm />
             </div>
             <div className="right">
@@ -98,6 +153,19 @@ function App() {
                         <h2>
                             <BiCylinder />
                         </h2>
+                        {cylinders.map((item) => (
+                            <CylinderList
+                                key={item.id}
+                                units={item.units}
+                                material={item.material}
+                                weight={item.weight}
+                                total={item.total}
+                                height={item.height}
+                                radius={''}
+                                id={item.id}
+                                handleDeleteCylinder={handleDeleteCylinder}
+                            />
+                        ))}
                     </div>
                     {/* <div className="line"></div> */}
                     <div>

@@ -1,21 +1,57 @@
 import React from 'react';
 import { BiCylinder } from 'react-icons/bi';
+import { TCylinder } from '../model';
 import './Form.css';
 
-const Cylinder = () => {
+interface Props {
+    cylinder: TCylinder;
+    setCylinder: React.Dispatch<React.SetStateAction<TCylinder>>;
+    handleCylinder: (e: React.FormEvent) => void;
+}
+
+const Cylinder: React.FC<Props> = ({
+    cylinder,
+    setCylinder,
+    handleCylinder,
+}) => {
     return (
-        <form className="form">
+        <form className="form" onSubmit={(e) => handleCylinder(e)}>
             <h3>Cylinder</h3>
             <h2>
                 <BiCylinder />
             </h2>
-            <label>Radius (cm): </label>
-            <input type="number" required />
+            <label htmlFor="radius-cylinder">Radius (cm): </label>
+            <input
+                name="radius-cylinder"
+                id="radius-cylinder"
+                type="number"
+                value={cylinder.radius}
+                onChange={(e) =>
+                    setCylinder({ ...cylinder, radius: e.target.value })
+                }
+                required
+            />
 
-            <label>Heigth (cm): </label>
-            <input type="number" required />
+            <label htmlFor="height-cylinder">Height (cm): </label>
+            <input
+                name="height-cylinder"
+                id="height-cylinder"
+                type="number"
+                value={cylinder.height}
+                onChange={(e) =>
+                    setCylinder({ ...cylinder, height: e.target.value })
+                }
+                required
+            />
 
-            <select name="material" defaultValue="" required>
+            <select
+                name="material"
+                value={cylinder.material || ''}
+                onChange={(e) =>
+                    setCylinder({ ...cylinder, material: e.target.value })
+                }
+                required
+            >
                 <option disabled value="">
                     -- select the material --
                 </option>
@@ -30,8 +66,17 @@ const Cylinder = () => {
                 </option>
             </select>
             <div>
-                <label>Units:</label>
-                <input type="number" required />
+                <label htmlFor="units-cylinder">Units:</label>
+                <input
+                    name="units-cylinder"
+                    id="units-cylinder"
+                    type="number"
+                    value={cylinder.units}
+                    onChange={(e) =>
+                        setCylinder({ ...cylinder, units: e.target.value })
+                    }
+                    required
+                />
 
                 <button>Add</button>
             </div>

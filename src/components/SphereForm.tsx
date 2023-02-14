@@ -17,10 +17,10 @@ const SphereForm: React.FC<Props> = ({ sphere, setSphere, handleSphere }) => {
                 <ImSphere />
             </h2>
 
-            <label>Radius (cm): </label>
+            <label htmlFor="radius-sphere">Radius (cm): </label>
             <input
-                name="radius"
-                id="radius"
+                name="radius-sphere"
+                id="radius-sphere"
                 type="number"
                 value={sphere.radius}
                 onChange={(e) =>
@@ -51,8 +51,10 @@ const SphereForm: React.FC<Props> = ({ sphere, setSphere, handleSphere }) => {
                 </option>
             </select>
             <div>
-                <label>Units: </label>
+                <label htmlFor="units-sphere">Units: </label>
                 <input
+                    id="units-sphere"
+                    name="units-sphere"
                     type="number"
                     required
                     value={sphere.units}
