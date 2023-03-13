@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <div className="footer">
             <p>
-                Builded by{' '}
+                Built by{' '}
                 <a
                     target="_blank"
                     href="https://lavarinimoreira.me"

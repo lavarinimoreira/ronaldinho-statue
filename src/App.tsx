@@ -235,7 +235,7 @@ function App() {
                         <div className="confetti">
                             <h2>Congrats!</h2>
                             <p>
-                                You build a{' '}
+                                You built a{' '}
                                 {(Math.round(totalWeight * 100) / 100).toFixed(
                                     2
                                 )}
